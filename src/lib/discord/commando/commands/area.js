@@ -5,6 +5,8 @@ exports.run = async (client, msg, command) => {
 	try {
 		// Check target
 		const confAreas = client.geofence.map((area) => area.name.toLowerCase().replace(/ /gi, '_')).sort()
+		const confAreas2 = client.geofence.map((area) => area.name.replace(/ /gi, '_')).sort()
+		const confUse = confAreas2.join('\n')
 		if (!client.config.discord.admins.includes(msg.author.id) && msg.channel.type === 'text') {
 			return await msg.author.send(client.translator.translate('Please run commands in Direct Messages'))
 		}
@@ -40,7 +42,7 @@ exports.run = async (client, msg, command) => {
 				const oldArea = JSON.parse(human.area.split()).map((area) => area.replace(/ /gi, '_'))
 				const validAreas = confAreas.filter((x) => args.includes(x))
 				const addAreas = validAreas.filter((x) => !oldArea.includes(x))
-				const newAreas = [...oldArea, ...addAreas].filter((area) => validAreas.includes(area))
+				const newAreas = [...oldArea, ...addAreas].filter((area) => confAreas.includes(area))
 				if (!validAreas.length) {
 					return await msg.reply(`no valid areas there, please use one of ${confAreas}`)
 				}
@@ -60,7 +62,7 @@ exports.run = async (client, msg, command) => {
 				const oldArea = JSON.parse(human.area.split()).map((area) => area.replace(/ /gi, '_'))
 				const validAreas = confAreas.filter((x) => args.includes(x))
 				const removeAreas = validAreas.filter((x) => oldArea.includes(x))
-				const newAreas = [...oldArea].filter((area) => validAreas.includes(area) && !removeAreas.includes(area))
+				const newAreas = [...oldArea].filter((area) => confAreas.includes(area) && !removeAreas.includes(area))
 				if (!validAreas.length) {
 					return await msg.reply(`no valid areas there, please use one of ${confAreas}`)
 				}
@@ -76,7 +78,7 @@ exports.run = async (client, msg, command) => {
 				break
 			}
 			case 'list': {
-				await msg.reply(`Current configured areas are ${confAreas}`)
+				await msg.reply(`**Current configured areas are:** \`\`\`${confUse}\`\`\` `)
 				break
 			}
 			default:

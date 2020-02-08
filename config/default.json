@@ -18,10 +18,10 @@
         "client": "sqlite",
         "conn": {
             "host": "127.0.0.1",
-            "port": 3306,
             "database": "poracle",
             "user": "poracleuser",
-            "password": "poraclepassword"
+            "password": "poraclepassword",
+            "port": 3306
         }
     },
     "locale": {
@@ -36,10 +36,9 @@
         "invite": "",
         "token": [],
         "channels": ["general"],
-        "userRole": ["roleNameHere"],
+        "userRole": ["roleId1", "358207117951369217"],
         "admins": ["222742859059560458"],
         "prefix": "!",
-        "typereact": false,
         "limitSec": 30,
         "limitAmount": 20,
         "ivColors": [
@@ -50,6 +49,14 @@
             "#A335EE",
             "#FF8000"
         ]
+      },
+
+      "telegram": {
+        "enabled": false,
+        "location": true,
+        "token": "",
+        "admins": [""],
+        "channel": "PoracleJsTest"
       },
 
       "geocoding": {
@@ -63,8 +70,6 @@
         "spriteHeight": 20,
         "spriteWidth": 20,
         "scale": 2,
-        "type": "klokantech-basic",
-        "tileserver": "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      },
-      "commands": {}
+        "type": "klokantech-basic"
+      }
 }

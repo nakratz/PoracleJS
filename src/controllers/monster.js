@@ -125,8 +125,6 @@ class Monster extends Controller {
 			if (!data.weather) data.weather = 0
 			data.move1emoji = this.utilData.moves[data.move_1] && this.utilData.types[this.utilData.moves[data.move_1].type] ? this.utilData.types[this.utilData.moves[data.move_1].type].emoji : ''
 			data.move2emoji = this.utilData.moves[data.move_2] && this.utilData.types[this.utilData.moves[data.move_2].type] ? this.utilData.types[this.utilData.moves[data.move_2].type].emoji : ''
-			// data.move1emoji = moveData[data.move_1] && moveData[data.move_1].type && emojiData.type && emojiData.type[moveData[data.move_1].type] ? emojiData.type[moveData[data.move_1].type] : data.move1emoji
-			// data.move2emoji = moveData[data.move_2] && moveData[data.move_2].type && emojiData.type && emojiData.type[moveData[data.move_2].type] ? emojiData.type[moveData[data.move_2].type] : data.move2emoji
 			data.boost = this.utilData.weather[data.weather] ? this.utilData.weather[data.weather].name : ''
 			data.boostemoji = this.utilData.weather[data.weather] ? this.utilData.weather[data.weather].emoji : ''
 			data.applemap = `https://maps.apple.com/maps?daddr=${data.latitude},${data.longitude}`
@@ -227,7 +225,7 @@ class Monster extends Controller {
 					lat: data.latitude.toString().substring(0, 8),
 					lon: data.longitude.toString().substring(0, 8),
 					// sticker: data.sticker.toLowerCase(),
-					message: caresCache === this.config.discord.limitAmount + 1 ? { content: `You have reached the limit of ${this.config.discord.limitAmount} messages over ${this.config.discord.limitsec} seconds` } : message,
+					message: caresCache === this.config.discord.limitAmount + 1 ? { content: `You have reached the limit of ${this.config.discord.limitAmount} messages over ${this.config.discord.limitSec} seconds` } : message,
 					target: cares.id,
 					type: cares.type,
 					name: cares.name,
